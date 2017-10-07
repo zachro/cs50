@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <tr>
+            <th>Cash Balance:</th>
+            <td>{{ user["cash"] }}</td>
+        </tr>
+        <tr>
+            <th>Invested Funds:</th>
+            <td>{{ user["invested_funds"] }}</td>
+        </tr>
+        <tr>
+            <th>Total Funds:</th>
+            <td>{{ user["total_funds"] }}</td>
+        </tr>
+    </table>
+    <form action="{{ url_for('index') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                Add Cash: <input autocomplete="off" autofocus class="form-control" name="add_cash" placeholder="ex: 100.00" type="text"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Add</button>
+            </div>
+        </fieldset>
+    </form>
+    <table class="table table-striped">
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Purchase Price</th>
+            <th>Current Price</th>
+            <th>Current Value</th>
+        </tr>
+        {% for stock in stocks %}
+            <tr>
+                <td>{{ stock["symbol"] }}</td>
+                <td>{{ stock["SUM(shares)"] }}</td>
+                <td>{{ stock["price"] }}</td>
+                <td>{{ stock["current_price"] }}</td>
+                <td>{{ stock["current_value"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

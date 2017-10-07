@@ -1,0 +1,21 @@
+0.  What is pneumonoultramicroscopicsilicovolcanoconiosis
+    A disease caused by breathing in silica dust
+1.  According to its man page, what does getrusage do?
+    Returns the usage statistics for the calling process
+2.  Per that same man page, how many members are in a variable of type struct rusage?
+    16, including the structs ru_utime and ru_stime
+3.  Why do you think we pass before and after by reference (instead of by value) to calculate, even though we're not changing their contents?
+    Because the function expects a pointer, not a value.
+4.  Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, convince us that you indeed understand how that functions for loop works.
+    First, the loop defines c as a character in the file and checks that that character is not the EOF character.
+    Then the loop appends characters into the word array until it reaches a character that is not a letter or an apostrophe.
+    If the string is too long to be a word, it moves on to the next word.
+    If the string contains any digits, it moves on to the next word.
+    Otherwise, it checks to see if the word is in the dictionary.
+    If the word is not in the dictionary, it prints it and increments the count of misspellings.
+    Otherwise, it moves on to the next word in the file.
+5.  Why do you think we used fgetc to read each word's characters one at a time rather than use fscanf with a format string like "%s" to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
+    fscanf() gets an entire string regardless of whether that string is intended to represent a word.
+    Using fgetc() allows us to check each character and ensure they are all alphabetic or an apostrophe, meaning the string was intended to be a word, not a number, date, etc.
+6.  Why do you think we declared the parameters for check and load as const (which means "constant")?
+    Because we don't want those functions to be able to change any of the contents of the word or dictionary.
